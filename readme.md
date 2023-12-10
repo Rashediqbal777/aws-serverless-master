@@ -1,14 +1,16 @@
+This repository cosists the code which::
+  whenever a json document is uploaded into a designated s3 bucket,
+  it triggers a lambda func. and it grabs the json part of the file and populates 
+  the dynamodb table according to the key and value of the json document.
 
-these commands are perfomed in aws cloudshell::
-
- - python3 -m venv ec2-slack-notification
- - cd ec2-slack-notification/
- - source ./bin/activate
- - pip install resources
- - cd lib/python3.7/site-packages/
- - zip -r slack zip .
- - cd ../../../
- - mv ./lib/python3.7/site-packages/slack.zip .
- - vi slackcode.py #insert the python code here
- - zip -g slack.zip slackcode.py #then import the whole zip file to lambda
-
+How To Use:::
+  1.Create a s3 bucket
+  2.Create a Dynamodb table
+  3.create a lambda function with python 3.7 runtime.
+  4.assume roles:
+    -s3 readonly access
+    -lambda basic execution role
+    -dynamodb fullaccess
+  5.paste the code under lambda handler
+  6.create a trigger(S3) ,on whenever a object is uploaded,and add prefix .json
+  7.update with your table name in the lambda code 
