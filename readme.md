@@ -1,24 +1,14 @@
 
-# Apigateway-Lambda-KMS-DynamoDB
+these commands are perfomed in aws cloudshell::
 
-**What does this code do**
+ - python3 -m venv ec2-slack-notification
+ - cd ec2-slack-notification/
+ - source ./bin/activate
+ - pip install resources
+ - cd lib/python3.7/site-packages/
+ - zip -r slack zip .
+ - cd ../../../
+ - mv ./lib/python3.7/site-packages/slack.zip .
+ - vi slackcode.py #insert the python code here
+ - zip -g slack.zip slackcode.py #then import the whole zip file to lambda
 
--   this is a python 3.* code
--   lambda function takes email and password from the event
--   encrypts the password using kms key
--   puts email and encrypted password
--   then retrieves the email and the encrypted password
--   decrypts the password
--   returns the decrypted password
-
-**how to use this code**
-
--   paste the code on the lambda function
-    
--   replace kms key and table name.
-    
--   create a apigateway with post method and send email and password in the request body -make sure to integrate the apigatway with relevant lambda function
-    
--   add a dynamodb table with email primary key and declare it as string.
-    
--   you are good to go
